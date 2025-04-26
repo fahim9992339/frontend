@@ -19,7 +19,14 @@ const Addproduct = () => {
   const submit = async (e) => {
     e.preventDefault();
 
+    if (!product_name || !product_brand || !product_price) {
+      setError("Please fill all required fields!");
+      return;
+    }
+
     setLoading("Please wait...");
+    setError("");
+    setSuccess("");
 
     try {
       const data = new FormData();
@@ -38,7 +45,7 @@ const Addproduct = () => {
       setSuccess(response.data.message);
       setLoading("");
     } catch (error) {
-      console.error(error); // Log the full error for debugging
+      console.error(error);
       setLoading("");
       setError(error.response ? error.response.data.message : error.message);
     }
@@ -46,78 +53,43 @@ const Addproduct = () => {
 
   return (
     <div className="row justify-content-center mt-4">
-      <h1 className="text-center">Add product</h1>
-      <h1>{loading}</h1>
-      <h1>{success}</h1>
-      <h1>{error}</h1>
+      <h1 className="text-center">Add Product</h1>
+      {loading && <h5 className="text-info">{loading}</h5>}
+      {success && <h5 className="text-success">{success}</h5>}
+      {error && <h5 className="text-danger">{error}</h5>}
+
       <form className="card shadow col-md-6 p-4" onSubmit={submit}>
-        <label htmlFor="">Product Name</label>
-        <input
-          type="text"
-          className="form-control mb-4"
-          onChange={(e) => setProductName(e.target.value)}/>
-        <br />
+        <label>Product Name</label>
+        <input type="text" className="form-control mb-3" onChange={(e) => setProductName(e.target.value)} />
 
-        <label htmlFor="">Product Brand</label>
-        <input
-          type="text"
-          className="form-control mb-4"
-          onChange={(e) => setProductBrand(e.target.value)}/>
-        <br />
+        <label>Product Brand</label>
+        <input type="text" className="form-control mb-3" onChange={(e) => setProductBrand(e.target.value)} />
 
-        <label htmlFor="">Product size(KSH)</label>
-        <input
-          type="number"
-          className="form-control mb-4"
-          onChange={(e) => setProductsize(e.target.value)}
-        /><br />
+        <label>Product Size</label>
+        <input type="text" className="form-control mb-3" onChange={(e) => setProductsize(e.target.value)} />
 
-        <label htmlFor="">Product Color</label>
-        <input
-          type="text"
-          className="form-control mb-4"
-          onChange={(e) => setProductColor(e.target.value)}/>
-        <br />
+        <label>Product Color</label>
+        <input type="text" className="form-control mb-3" onChange={(e) => setProductColor(e.target.value)} />
 
-        <label htmlFor="">Product Material</label>
-        <input
-          type="text"
-          className="form-control mb-4"
-          onChange={(e) => setProductMaterial(e.target.value)}/>
-        <br />
+        <label>Product Material</label>
+        <input type="text" className="form-control mb-3" onChange={(e) => setProductMaterial(e.target.value)} />
 
-        <label htmlFor="">Product Gender</label>
-        <input
-          type="text"
-          className="form-control mb-4"
-          onChange={(e) => setProductGender(e.target.value)}/>
-        <br />
+        <label>Product Gender</label>
+        <input type="text" className="form-control mb-3" onChange={(e) => setProductGender(e.target.value)} />
 
-        <label htmlFor="">Product Price(KSH)</label>
-        <input
-          type="number"
-          className="form-control mb-4"
-          onChange={(e) => setProductPrice(e.target.value)}/>
-        <br />
+        <label>Product Price (KSH)</label>
+        <input type="number" className="form-control mb-3" onChange={(e) => setProductPrice(e.target.value)} />
 
-        <label htmlFor="">Product Quantity</label>
-        <input
-          type="number"
-          className="form-control mb-4"
-          onChange={(e) => setProductQuantity(e.target.value)}/>
-        <br />
+        <label>Product Quantity</label>
+        <input type="number" className="form-control mb-3" onChange={(e) => setProductQuantity(e.target.value)} />
 
-        <label htmlFor="">Product Photo</label>
-        <input
-          type="file"
-          className="form-control mb-4"
-          onChange={(e) => setProductPhoto(e.target.files[0])}
-          accept="image/*"/>
-        <br />
+        <label>Product Photo</label>
+        <input type="file" className="form-control mb-3" accept="image/*" onChange={(e) => setProductPhoto(e.target.files[0])} />
+
+        <button type="submit" className="btn btn-primary w-100 mt-4">Submit Product</button>
       </form>
     </div>
   );
 };
-
 
 export default Addproduct;
