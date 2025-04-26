@@ -40,7 +40,8 @@ const Signup = ()=>{
                 // now we can post the data 
                 // we will use axios package
                 // it come with http request methods such as POST, GET, PUT, DELETE.
-                await axios.post("https://Fahim999gt.pythonanywhere.com/api/signup", data);
+                const response = await axios.post("https://Fahim999gt.pythonanywhere.com/api/signup", data);
+
                 // console.log(response)
                 setSuccess(response.data.message)
                 setloading()
