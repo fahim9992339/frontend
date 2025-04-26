@@ -7,17 +7,17 @@ const Getproduct = () => {
     const [products, setProducts] = useState([]);
 
     // Function get products
-    const getproducts = async () => {
-        setLoading(true);
-        try {
-            const response = await axios.get("https://modcom2.pythonanywhere.com/api/get_product_details");
-            setLoading(false);
-            setProducts(response.data);
-        } catch (error) {
-            setLoading(false);
-            setError(error.message);
-        }
-    };
+const getproducts = async () => {
+    setLoading(true);
+    try {
+        const response = await axios.get("https://modcom2.pythonanywhere.com/api/get_product_details");
+        setProducts(response.data);
+    } catch (error) {
+        setError(error.message);
+    } finally {
+        setLoading(false); 
+    }
+};
 
     useEffect(() => {
         getproducts();
