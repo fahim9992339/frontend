@@ -25,7 +25,7 @@ const  Signin =()=>{
                 data.append("email",email)
                 data.append("password",password)
 
-                const response= await axios.post("https://Fahim999gt.pythonanywhere.com/api/signin",data)
+                const response = await axios.post("https://Fahim999gt.pythonanywhere.com/api/signin", data);
 
                 setSuccess(response.data.message)
                 setLoading("")
