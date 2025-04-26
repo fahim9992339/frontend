@@ -10,7 +10,7 @@ const Getproduct = () => {
 const getproducts = async () => {
     setLoading(true);
     try {
-        const response = await axios.get("https://modcom2.pythonanywhere.com/api/get_product_details");
+         const response = await axios.get("https://Fahim999gt.pythonanywhere.com/api/get_product_details");
         setProducts(response.data);
     } catch (error) {
         setError(error.message);
@@ -24,6 +24,7 @@ const getproducts = async () => {
     }, []);
 
     const image_path = "https://Fahim999gt.pythonanywhere.com/static/image/";
+
 
     return (
         <div className="row container-fluid">
